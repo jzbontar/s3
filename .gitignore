@@ -1,2 +1,3 @@
-s3.egg-info
+s3.egg-info/
+__pycache__/
 *.swp

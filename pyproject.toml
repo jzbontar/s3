@@ -1,0 +1,7 @@
+[project]
+name = "s3"
+version = "0.0.1"
+dependencies = ["awscli"]
+
+[project.scripts]
+s3 = "s3:main"
