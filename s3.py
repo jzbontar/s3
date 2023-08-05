@@ -15,15 +15,11 @@ cmd_prefix = f"aws s3 --endpoint-url={config['default']['endpoint_url']} "
 s3path = config["default"]["bucket"] + str(args.path.resolve())
 
 
-def isdir(s3path):
-    cmd = cmd_prefix + f"ls {s3path}"
-    stdout = run(cmd.split(), capture_output=True).stdout
-    return stdout.strip().startswith(b"PRE")
-
-
 def main():
     if args.action == "download":
-        if isdir(s3path):
+        cmd = cmd_prefix + f"ls {s3path}"
+        isdir = run(cmd.split(), capture_output=True).stdout.strip().startswith(b"PRE")
+        if isdir:
             cmd = cmd_prefix + f"sync {s3path} {args.path}"
         else:
             cmd = cmd_prefix + f"cp {s3path} {args.path}"
