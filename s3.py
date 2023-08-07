@@ -12,7 +12,7 @@ config = configparser.ConfigParser()
 config.read(os.path.expanduser("~") + "/.s3")
 
 cmd_prefix = f"aws s3 --endpoint-url={config['default']['endpoint_url']} "
-s3path = config["default"]["bucket"] + os.path.abspath(args.path)
+s3path = config["default"]["bucket"] + os.path.realpath(args.path)
 
 
 def isdir(s3path):
