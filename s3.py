@@ -35,8 +35,7 @@ def main():
         cmd = cmd_prefix + f"rm {s3path}" + (" --recursive" if isdir(s3path) else "")
     elif args.action == "ls":
         cmd = cmd_prefix + f"ls {s3path}"
-        if args.path.endswith("/"):
+        if args.path != "/" and isdir(s3path):
             cmd += "/"
-        print(s3path)
 
     run(cmd.split() + unknownargs)
