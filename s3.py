@@ -5,7 +5,7 @@ from subprocess import run
 
 parser = argparse.ArgumentParser()
 parser.add_argument("action")
-parser.add_argument("path")
+parser.add_argument("path", nargs="?", default=".")
 args, unknownargs = parser.parse_known_args()
 
 config = configparser.ConfigParser()
